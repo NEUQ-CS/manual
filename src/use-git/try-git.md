@@ -125,7 +125,7 @@ git commit -m "add `a_new_file` to this repo"
 ```
 
 ##### 将已跟踪的文件删除
-你可以使用`git rm <文件>来删除，这会直接把删除操作直接添加到暂存区，文件系统上的文件也会被删除。它等价于以下操作：
+你可以使用`git rm <文件>`来删除，这会直接把删除操作直接添加到暂存区，文件系统上的文件也会被删除。它等价于以下操作：
 ```bash
 rm an_old_file
 git add an_old_file
