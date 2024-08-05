@@ -78,6 +78,12 @@ Shell[^2] 是一个命令行解释器，它是一个程序，用于解释用户�
 
 安装完成后，在任意文件夹中按住`shift`，右键点击鼠标，你会看到`在此处打开 Git Bash`或者`Open Git Bash here`。点击这个选项，你就可以**在当前文件夹**中打开 Git Bash 了。
 
+![Git Bash here](./assets/git-bash-here.png)
+
+你也可以使用Windows Terminal，请先按照以下视频添加Git Bash的配置。
+
+<video src="./assets/add-profile.mp4" controls="controls"></video>
+
 ## Linux
 
 跳转到你的发行版的部分，按照你的发行版安装即可。
