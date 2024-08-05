@@ -51,7 +51,9 @@ jobs:
           git checkout -b ${DEPLOY_BRANCH}
           
           # Create commit
-          git add .
+
+          # The output directory is ignored by default, so force add it
+          git add -f book
           git commit -m "Deploy mdBook to ${DEPLOY_BRANCH}"
 
           # Push changes
