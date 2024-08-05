@@ -16,3 +16,4 @@
 # Git 的使用
 - [什么是Git](./use-git/whatis.md)
 - [安装 Git](./use-git/installation.md)
+- [配置 Git及简要的命令行教程](./use-git/configuration.md)
