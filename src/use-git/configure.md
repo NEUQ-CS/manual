@@ -280,6 +280,322 @@ int main(int argc, char *argv[]) {
 
 从现在开始，你就要像一个程序员一样使用命令行了。在这一节中，我们会学习一些基本的命令。
 
-命令需要工作环境，例如，我想查看文件夹的内容，我就需要进入这个文件夹。`进入文件夹` 意味着将工作目录改变到这个文件夹。
-<!-- TODO  -->
+一般来说，你使用的命令只有两类：
+1. 更改工作目录的命令
+2. 执行程序或操作
 
+### 更改工作目录的命令
+
+更改工作目录的一般使用`cd`命令。`cd`是`change directory`的缩写。
+
+`cd` 后既可以接绝对路径，也可以接相对路径。
+
+使用绝对路径：
+```bash
+cd /home/caiyi/Desktop
+```
+
+现在你的工作目录就变成了`/home/caiyi/Desktop`。输入pwd命令，你会看到输出是`/home/caiyi/Desktop`。同时在提示符附近也可以看到当前工作目录。
+
+再使用相对路径：
+```bash
+cd repos/manual
+```
+
+现在你的工作目录就变成了`/home/caiyi/Desktop/repos/manual`。输入pwd命令，你会看到输出是`/home/caiyi/Desktop/repos/manual`。
+
+通常来说，使用相对路径更方便，因为你不需要记住绝对路径。要进入当前工作目录下的一个文件夹，只需要输入`cd 文件夹名`即可。
+
+现在来看看`..`和`.`的用法。
+
+```bash
+cd ..
+```
+
+输入这个命令后，你的工作目录就变成了原来工作目录的上一级目录。输入`pwd`命令，你会看到输出是`/home/caiyi/Desktop/repos`。
+
+```bash
+cd .
+```
+
+输入这个命令后，你的工作目录不会发生变化。因为`.`表示当前工作目录。虽然`.`在现在看起来好像没什么用，但是在某些情况下，`.`是非常有用的。后面我们会提到。
+
+### 执行程序或操作
+
+在命令行中，你可以执行程序或者操作。这些程序或操作可以是内建的，也可以是外部的。
+
+#### 内建命令
+
+##### `pwd`
+
+`pwd`是`print working directory`的缩写。这个命令会输出当前工作目录的绝对路径。
+
+样例输出：
+```bash
+pwd
+```
+
+输出的内容是`/home/caiyi/`。
+
+##### `ls`
+
+`ls`是`list`的缩写。这个命令会列出当前工作目录下的所有文件和文件夹。
+
+样例输出：
+```bash
+LICENSE  book/  book.toml  src/
+```
+这是当前本仓库的根目录的输出。你可以看到有四个文件和文件夹。文件夹都以`/`结尾，其他的都是文件。
+
+`ls`命令还有一些选项，常用的有`-l`和`-a`。
+
+`-l`选项会输出更详细的信息，包括文件的权限，所有者，大小，修改时间等。
+
+例如：
+```bash
+caiyi@archlinux ~/r/manual (use-git)> ls -l
+total 16
+-rw-r--r-- 1 caiyi caiyi 1064 Aug  5 14:57 LICENSE
+drwxr-xr-x 7 caiyi caiyi 4096 Aug  5 19:03 book/
+-rw-r--r-- 1 caiyi caiyi  148 Aug  5 15:29 book.toml
+drwxr-xr-x 4 caiyi caiyi 4096 Aug  5 18:40 src/
+```
+
+`-a`选项会输出所有的文件和文件夹，包括隐藏的文件和文件夹。隐藏的文件和文件夹以`.`开头。
+```bash
+caiyi@archlinux ~/r/manual (use-git)> ls -a
+./  ../  .git/  .github/  .gitignore  LICENSE  book/  book.toml  src/
+```
+
+更多的用法请上网查询。
+
+##### `rm`
+
+`rm`是`remove`的缩写。这个命令会删除文件或者文件夹。
+
+###### 删除文件
+
+直接输入`rm`，然后将文件路径作为参数传递给`rm`。
+
+例如
+```bash
+rm LICENSE
+rm ./LICENSE
+rm ../LICENSE
+```
+
+###### 删除文件夹
+
+如果一个文件夹不为空，你不能直接删除它。
+但是有一个简单的方法可以删除一个文件夹及其所有内容，就是使用`-r`选项。`r`是`recursive`的缩写，表示递归。
+
+```bash
+rm -r book/
+```
+
+这个命令会删除`book`文件夹及其所有内容。
+
+###### 删除多个文件
+
+你可以一次删除多个文件。
+
+```bash
+rm LICENSE book.toml
+```
+
+这个命令会删除`LICENSE`和`book.toml`这两个文件。
+
+##### mv
+`mv`是`move`的缩写。这个命令可以移动文件或者文件夹。
+
+```bash
+mv LICENSE book/
+```
+
+这个命令会将`LICENSE`文件移动到`book`文件夹下。
+
+```bash
+mv book/ book-old/
+```
+
+这个命令会将`book`文件夹**重命名**为`book-old`。Unix下没有专门的重命名命令，重命名就是移动。
+
+##### cp
+
+`cp`是`copy`的缩写。这个命令可以复制文件或者文件夹。其语法和`mv`类似。这里不再赘述。
+
+```bash
+cp LICENSE book/
+```
+把`LICENSE`文件复制到`book`文件夹下。
+
+##### mkdir
+`mkdir`是`make directory`的缩写。这个命令可以创建文件夹。
+
+```bash
+mkdir new-folder
+```
+
+这个命令会在当前工作目录下创建一个叫`new-folder`的文件夹。
+
+###### 创建多级文件夹
+
+```bash
+mkdir -p new-folder/sub-folder
+```
+
+这个命令会创建一个叫`new-folder`的文件夹，然后在这个文件夹下创建一个叫`sub-folder`的文件夹。
+
+##### touch
+
+`touch`命令会创建一个空文件。
+
+```bash
+touch new-file
+```
+
+这个命令会在当前工作目录下创建一个叫`new-file`的文件。
+
+#### 外部命令
+
+常用的内部命令就以上这几个，它们覆盖了你在日常工作中的大部分需求。但是有时候你需要使用一些外部命令。
+
+##### cat
+`cat`是`concatenate`的缩写。这个命令会输出文件的内容。很多人认为`cat`是一个内建命令，但是它实际上是一个外部命令。
+
+```bash
+cat LICENSE
+```
+
+这个命令会输出`LICENSE`文件的内容。
+例如：
+```ascii
+caiyi@archlinux ~/r/manual (use-git)> cat LICENSE 
+MIT License
+
+Copyright (c) 2024 NEUQ-CS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+##### echo
+`echo`命令会输出参数。
+
+```bash
+echo "Hello, World!"
+```
+
+这个命令会输出`Hello, World!`。
+
+##### 其他命令
+
+对于其他命令，只要它在环境变量`PATH`中，你就可以直接使用。使用`echo $PATH`，你可以看到`PATH`中包含了哪些路径。这些路径就是系统用来查找命令的路径。在这些路径下的**可执行文件**都可以直接使用。
+
+我们使用的`git`命令就是一个外部命令。如果是 Unix 系统，git 在`/usr/bin`或者`/usr/local/bin`中会有一个链接指向真正的可执行文件。在 Windows 系统中，git 会被安装到`C:\Program Files\Git\bin`中或者你自己指定的路径。
+
+如果你不知道一个命令是不是内建命令，你可以使用`which`命令来查找。
+
+### 链接
+
+在 Unix 系统中，有两种链接：符号链接（也叫软链接）和硬链接。
+
+它们都是一种特殊的文件，它们**指向**另一个文件。软链接在 Windows 下叫做快捷方式。软链接在 Unix 下有两种，一种是符号链接，另一种是硬链接。符号链接是一种特殊的文件，它指向另一个文件。硬链接是一个文件的另一个名字。
+
+指向意味着，当你访问这个链接时，实际上你访问的是被链接的文件。这样，你可以在不改变文件的情况下，改变文件的位置。同时，你也可以在不占用额外空间的情况下，创建一个文件的副本。
+
+### 环境变量
+
+环境变量是一种特殊的变量，它们是在操作系统启动时设置的。环境变量是一个键值对。键是环境变量的名字，值是环境变量的值。
+
+对于新手来说，你只需要了解两个环境变量：`PATH`和`HOME`。
+
+`PATH`是一个包含了系统用来查找命令的路径的变量。当你输入一个命令时，系统会在`PATH`中的路径下查找这个命令。如果找到了，就会执行这个命令。如果没有找到，就会提示`command not found`。
+
+`HOME`是用户的家目录。在 Unix 系统中，用户的家目录一般是`/home/<用户名>`。前面说的`~`是家的别名是不准确的，事实上，它是`HOME`环境变量的值。如果你修改了`HOME`环境变量，`~`也会随之改变。
+
+你可以使用`echo`命令来查看环境变量的值。
+
+```bash
+echo $PATH
+```
+
+'$'符号是一个特殊字符，它表示后面的是一个变量。在这个例子中，`$PATH`表示`PATH`环境变量的值。
+
+在 C 语言中的完整main函数的形式是这样的：
+
+```c
+int main(int argc, char *argv[], char *envp[]) {
+    // argc 是参数的数量
+    // argv 是参数的数组
+    // envp 是环境变量的数组
+}
+```
+
+是的，这才是完整的main函数，它接受3个参数而不是大多数教程中的2个参数。
+
+### 命令的选项
+命令的选项也是一种参数，但是它们以`-`或者`--`开头。选项可以改变命令的行为。
+
+`-`选项是单字母的选项，`--`选项是多字母的选项。
+
+对于某些程序，例如`ls`，`-`选项可以合并，比如`-a -l`可以写成`-al`。
+
+一般来说，对大部分程序使用`-h`或者`--help`选项可以查看帮助信息。
+
+选项分为两种：有参数的选项和无参数的选项。有参数的选项后面需要跟一个参数，无参数的选项不需要。
+
+上面提到的`--help`就是是无参数的选项。
+
+例如，某款游戏可能接受`--fullscreen true`这样的选项，`--fullscreen`是有参数的选项，`true`是这个选项的参数。但是它们都是命令中的参数。
+
+### 管道
+
+管道是Unix中较为复杂的概念，在这里我只讲如何使用。
+
+管道的作用是**重定向命令的输出**。你可以把一个命令的输出作为另一个命令的输入。也可以把一个命令的输出保存到文件中。
+
+#### 重定向到另一个程序的标准输入
+
+```bash
+echo "Hello, World!" | cat
+```
+
+首先，`echo "Hello, World!"`会输出`Hello, World!`。然后，`|`会把这个输出重定向到`cat`命令的标准输入。`cat`会输出这个输入。所以输出还是`Hello, World!`。
+
+#### 重定向到文件
+
+```bash
+echo "Hello, World!" > hello.txt
+```
+
+这个命令会把`echo "Hello, World!"`的输出重定向到`hello.txt`文件中。`>`是重定向的符号。
+
+现在你可以使用`cat`命令查看这个文件的内容。
+
+```bash
+cat hello.txt
+```
+
+#### 重定向到文件的末尾
+
+```bash
+echo "Hello, World!" >> hello.txt
+```
+
+这个命令会把`echo "Hello, World!"`的输出**追加**到`hello.txt`文件的末尾。`>>`是追加重定向的符号。
