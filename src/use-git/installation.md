@@ -122,7 +122,7 @@ brew install git
 
 # 结束
 
-安装完成后，你可以打开终端，输入`git --version`，类似以下输出，说明安装成功：
+安装完成后，你可以打开终端，输入`git --version`，然后回车，看到类似以下输出，说明安装成功：
 
 ```bash
 caiyi@archlinux ~> git --version
