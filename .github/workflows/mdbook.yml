@@ -48,7 +48,8 @@ jobs:
           # Setup deploy branch
           CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
           DEPLOY_BRANCH="${CURRENT_BRANCH}-deploy"
-
+          git checkout -b ${DEPLOY_BRANCH}
+          
           # Create commit
           git add .
           git commit -m "Deploy mdBook to ${DEPLOY_BRANCH}"
