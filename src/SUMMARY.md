@@ -21,3 +21,4 @@
 - [Git 入门](./use-git/try-git.md)
 - [开始使用 GitHub](./use-git/get-started-with-gh.md)
 - [解决冲突](./use-git/conflict.md)
+- [养成良好的 Git 使用习惯](./use-git/best-practice.md)
