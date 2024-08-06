@@ -3,23 +3,32 @@ name: Azure Static Web Apps CD
 on:
   push:
     branches:
-      - master-deploy
+      - master
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - master-deploy
+      - master
 
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    env:
+      MDBOOK_VERSION: 0.4.36
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
-      - name: Build And Deploy
+      - name: Install mdBook
+        run: |
+          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
+          rustup update
+          cargo install --version ${MDBOOK_VERSION} mdbook
+      - name: Build with mdBook
+        run: mdbook build
+      - name: Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
