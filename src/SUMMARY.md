@@ -20,3 +20,4 @@
 - [认识命令行](./use-git/hug-cli.md)
 - [Git 入门](./use-git/try-git.md)
 - [开始使用 GitHub](./use-git/get-started-with-gh.md)
+- [解决冲突](./use-git/conflict.md)
