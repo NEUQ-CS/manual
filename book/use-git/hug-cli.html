@@ -1,0 +1,573 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>认识命令行 - 東秦計科人生存手冊</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 說明</a></li><li class="chapter-item expanded affix "><li class="part-title">通用篇</li><li class="chapter-item expanded "><a href="../get-started/markdown_syntax.html"><strong aria-hidden="true">2.</strong> Markdown 语法</a></li><li class="chapter-item expanded "><a href="../get-started/vscode.html"><strong aria-hidden="true">3.</strong> 使用 Visual studio code</a></li><li class="chapter-item expanded "><a href="../get-started/about-cs.html"><strong aria-hidden="true">4.</strong> 计算机类</a></li><li class="chapter-item expanded "><a href="../get-started/about-ei.html"><strong aria-hidden="true">5.</strong> 电子信息类篇</a></li><li class="chapter-item expanded affix "><li class="part-title">Git 的使用</li><li class="chapter-item expanded "><a href="../use-git/whatis.html"><strong aria-hidden="true">6.</strong> 什么是Git</a></li><li class="chapter-item expanded "><a href="../use-git/installation.html"><strong aria-hidden="true">7.</strong> 安装 Git</a></li><li class="chapter-item expanded "><a href="../use-git/configure.html"><strong aria-hidden="true">8.</strong> 配置 Git及简要的命令行教程</a></li><li class="chapter-item expanded "><a href="../use-git/hug-cli.html" class="active"><strong aria-hidden="true">9.</strong> 认识命令行</a></li><li class="chapter-item expanded "><a href="../use-git/try-git.html"><strong aria-hidden="true">10.</strong> Git 入门</a></li><li class="chapter-item expanded "><a href="../use-git/get-started-with-gh.html"><strong aria-hidden="true">11.</strong> 开始使用 GitHub</a></li><li class="chapter-item expanded "><a href="../use-git/conflict.html"><strong aria-hidden="true">12.</strong> 解决冲突</a></li><li class="chapter-item expanded "><a href="../use-git/best-practice.html"><strong aria-hidden="true">13.</strong> 养成良好的 Git 使用习惯</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">東秦計科人生存手冊</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="认识命令行"><a class="header" href="#认识命令行">认识命令行</a></h1>
+<p>本页内容对于新手来说可能有些难度，你不需要理解所有内容，只需要确保你能够看懂命令行，并使用命令行来完成常见工作即可。</p>
+<p>请认真对比命令行的内容和我对内容含义的解释，确保你理解命令行界面的含义。
+以下是三种常见的命令行界面，分别是：</p>
+<ol>
+<li>Git Bash on Windows</li>
+</ol>
+<pre><code class="language-bash">Caiyi Shyu@archlinux MINGW64 ~
+$ git --version
+</code></pre>
+<ol start="2">
+<li>Bash on Unix</li>
+</ol>
+<pre><code class="language-bash">[caiyi@archlinux ~]$ git --version
+</code></pre>
+<ol start="3">
+<li>Fish on Unix</li>
+</ol>
+<pre><code class="language-bash">caiyi@archlinux ~&gt; git --version
+</code></pre>
+<p>它们都含有以下几个部分：</p>
+<ol>
+<li><code>Caiyi Shyu@archlinux</code> 或者 <code>caiyi@archlinux</code></li>
+<li><code>~</code></li>
+<li><code>$</code> 或者 Fish 中的 <code>&gt;</code></li>
+<li><code>git --version</code></li>
+</ol>
+<p>第一个部分是用户名和主机名，格式为<code>&lt;用户名&gt;@&lt;主机名&gt;</code>。</p>
+<h4 id="用户名和主机名"><a class="header" href="#用户名和主机名">用户名和主机名</a></h4>
+<p>在上面的例子中，用户名是<code>Caiyi Shyu</code>或者<code>caiyi</code>，主机名是<code>archlinux</code>。主机名是你的电脑的名字，在你操作系统的设置中可以找到并进行更改。</p>
+<h4 id="工作目录"><a class="header" href="#工作目录">工作目录</a></h4>
+<p>第二个部分是工作目录，格式为<code>&lt;工作目录&gt;</code>。在上面的例子中，工作目录是<code>~</code>。<code>~</code>表示用户的home目录，也就是你的用户目录。在 Windows 中，用户的家目录一般是<code>C:\Users\&lt;用户名&gt;</code>。在 Unix 中，用户的家目录一般是<code>/home/&lt;用户名&gt;</code>。</p>
+<p>你也可以在终端中输入<code>pwd</code>命令来查看当前工作目录。
+以下是在 Windows 和 Unix 中的输出：</p>
+<ol>
+<li>Git Bash on Windows</li>
+</ol>
+<pre><code>/c/Users/Caiyi Shyu/
+</code></pre>
+<p>看起来和 Windows 下常见的路径有些不一样。这是因为 Git Bash 使用 Unix 风格的路径。上面的路径等价于<code>C:\Users\Caiyi Shyu\</code>。注意，在Git Bash中，只能使用Unix风格的路径，并且路径分隔符是<code>/</code>而不是<code>\</code>。</p>
+<ol start="2">
+<li>Bash or Fish on Unix</li>
+</ol>
+<pre><code>/home/caiyi
+</code></pre>
+<p>这是完整目录，当前用户的<code>home</code>就等价于<code>~</code></p>
+<p>当我进入当前目录下的<code>Desktop</code>目录时，工作目录会变成<code>~/Desktop</code>。</p>
+<p>就像下面一样：</p>
+<ol>
+<li>Git Bash on Windows</li>
+</ol>
+<pre><code class="language-bash">Caiyi Shyu@archlinux MINGW64 ~/Desktop
+$ 
+</code></pre>
+<ol start="2">
+<li>Bash on Unix</li>
+</ol>
+<pre><code class="language-bash">[caiyi@archlinux ~/Desktop]$ 
+</code></pre>
+<ol start="3">
+<li>Fish on Unix</li>
+</ol>
+<pre><code class="language-bash">caiyi@archlinux ~/Desktop&gt; 
+</code></pre>
+<p>现在输入<code>pwd</code>命令，你会看到输出是<code>/home/caiyi/Desktop</code>(Linux和macOS)或者<code>/c/Users/Caiyi Shyu/Desktop</code>(Windows)。</p>
+<p><strong>需要说明的是，shell中的工作目录通常为了显示简洁，可能会省略一部分内容。如果你不清楚当前的工作目录，请随时<code>pwd</code>命令来查看。</strong></p>
+<h4 id="提示符"><a class="header" href="#提示符">提示符</a></h4>
+<p>第三个部分是提示符，格式为<code>&lt;提示符&gt;</code>。在上面的例子中，提示符是<code>$</code>或者<code>&gt;</code>。提示符告诉你终端已经准备好接受你的输入了。</p>
+<h4 id="命令"><a class="header" href="#命令">命令</a></h4>
+<p>第四个部分是命令，格式为<code>&lt;命令&gt;</code>。在上面的例子中，命令是<code>git --version</code>。这个命令告诉终端你想要执行<code>git</code>这个程序，并且传递了一个参数<code>--version</code>给这个程序。</p>
+<p>命令是你和shell交互的方式。当你输入完命令后，按下回车键，shell会<strong>解释</strong><sup class="footnote-reference"><a href="#1">1</a></sup>并执行这个命令。</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>解释是指shell会根据你输入的命令，找到对应的程序，并且传递参数给这个程序。程序会根据参数执行相应的操作。</p>
+</div>
+<p>命令分为两种：内建命令和外部命令。内建命令是shell自带的命令，比如<code>cd</code>，<code>pwd</code>，<code>exit</code>等。外部命令是你安装的程序，比如<code>git</code>，<code>ls</code>，<code>cat</code>等。</p>
+<p>Shell 在寻找命令时，会先在内建命令中查找，如果找不到，就会在外部命令中查找。所以，当你尝试执行一个不存在的命令时，shell会提示你<code>command not found</code>，就像下面这样：</p>
+<pre><code class="language-bash">[caiyi@archlinux Desktop]$ firetruck you
+bash: firetruck: command not found
+</code></pre>
+<p>需要说明的是，只有第一个单词是命令，比如上面的<code>firetruck</code>和<code>git</code>，shell 会去寻找一个叫<code>firetruck</code>或者<code>git</code>的程序。后面的一切都是参数，shell 会把这些参数传递给这个程序。</p>
+<p>例如，在执行<code>git --version</code>时，<code>--version</code>就是参数。程序根据不同的参数执行不同的操作。</p>
+<p>还记得main函数的完整形式？通过argv向量，程序就可以访问到这些参数。</p>
+<pre><code class="language-c">// 省略了 envp 参数，避免让新手头大
+int main(int argc, char *argv[]) {
+    // argc 是参数的数量
+    // argv 是参数的数组
+}
+</code></pre>
+<p>让我们写一个简单的程序来获取所有的参数。</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(int argc, char *argv[])
+{
+    for (int i = 0; i &lt; argc; i++)
+    {
+        printf(&quot;argv[%d]: %s\n&quot;, i, argv[i]);
+    }
+
+    return 0;
+}
+</code></pre>
+<p>编译后，我们使用以下参数运行这个程序，可以得到以下输出：</p>
+<pre><code class="language-bash">caiyi@archlinux ~&gt; ./argv_demo --version
+argv[0]: ./argv_demo
+argv[1]: --version
+</code></pre>
+<p>可以看到，<code>--version</code>这个参数被传递给了这个程序。但是值得注意的一点是，第一个参数并不是<code>--version</code>，而是程序的名字。这是因为，程序可能在运行时希望获得自己的完整路径，通过将<strong>当前工作目录</strong>和<strong>程序名</strong>拼接起来，程序就可以获得自己的完整路径。</p>
+<h2 id="认识路径"><a class="header" href="#认识路径">认识路径</a></h2>
+<p>以这个路径为例：<code>/home/caiyi/Desktop</code>。</p>
+<p>路径表示文件系统中的位置，既可以是文件夹，也可以是文件。</p>
+<p>路径分为绝对路径和相对路径。在Unix风格的路径中，判断一个路径是绝对路径还是相对路径很简单：如果路径以<code>/</code>开头，那么这个路径就是绝对路径，否则就是相对路径。</p>
+<p>绝对路径是从<strong>根目录</strong>开始的路径，相对路径是相对于当前工作目录的路径。</p>
+<p>看到一个路径，请你的大脑将这个路径按'/'分割成一个数组：<code>['home', 'caiyi', 'Desktop']</code>。</p>
+<p>除最后一个元素外，每个元素都是一个文件夹。最后一个元素既可以是文件夹也可以是文件。但是如果最后一个元素后面还跟了一个<code>/</code>，那么这个元素就是一个文件夹。</p>
+<p>上面的例子中，由于是一个绝对路径，所以它的含义是
+根目录下的<code>home</code>文件夹下的<code>caiyi</code>文件夹下的<code>Desktop</code>文件夹（或文件夹）。</p>
+<p>下面来看一个相对路径的例子：<code>repos/manual/</code></p>
+<p>这个路径是相对路径，因为它不是以<code>/</code>开头的。这个路径的含义是<strong>当前工作目录</strong>下的<code>repos</code>文件夹下的<code>manual</code>文件夹<sup class="footnote-reference"><a href="#2">2</a></sup>。</p>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>前面说了，如果最后一个元素后面还跟了一个<code>/</code>，那么这个元素就是一个文件夹。</p>
+</div>
+<h3 id="特殊的路径"><a class="header" href="#特殊的路径">特殊的路径</a></h3>
+<p>前面介绍了<code>/</code>和<code>~</code>这两个特殊的路径。它们分别表示根目录和用户的家目录。</p>
+<p><code>/</code>是根目录，是文件系统的最顶层。在 Unix 系统中，所有的文件和文件夹都是从根目录开始的。</p>
+<p><code>~</code>是用户的家目录，是用户的默认工作目录。在 Unix 系统中，用户的家目录一般是<code>/home/&lt;用户名&gt;</code>。</p>
+<p>下面再介绍两个特殊的路径：<code>.</code>和<code>..</code>。</p>
+<p><code>.</code>表示当前工作目录，是一个相对路径。例如，<code>./repos</code>表示当前工作目录下的<code>repos</code>文件夹。它就等价于<code>repos</code>。</p>
+<p><code>..</code>表示上一级目录，是一个相对路径。例如，<code>../repos</code>表示当前工作目录的上一级目录下的<code>repos</code>文件夹。</p>
+<h2 id="基本命令"><a class="header" href="#基本命令">基本命令</a></h2>
+<p>从现在开始，你就要像一个程序员一样使用命令行了。在这一节中，我们会学习一些基本的命令。</p>
+<p>一般来说，你使用的命令只有两类：</p>
+<ol>
+<li>更改工作目录的命令</li>
+<li>执行程序或操作</li>
+</ol>
+<h3 id="更改工作目录的命令"><a class="header" href="#更改工作目录的命令">更改工作目录的命令</a></h3>
+<p>更改工作目录的一般使用<code>cd</code>命令。<code>cd</code>是<code>change directory</code>的缩写。</p>
+<p><code>cd</code> 后既可以接绝对路径，也可以接相对路径。</p>
+<p>使用绝对路径：</p>
+<pre><code class="language-bash">cd /home/caiyi/Desktop
+</code></pre>
+<p>现在你的工作目录就变成了<code>/home/caiyi/Desktop</code>。输入pwd命令，你会看到输出是<code>/home/caiyi/Desktop</code>。同时在提示符附近也可以看到当前工作目录。</p>
+<p>再使用相对路径：</p>
+<pre><code class="language-bash">cd repos/manual
+</code></pre>
+<p>现在你的工作目录就变成了<code>/home/caiyi/Desktop/repos/manual</code>。输入pwd命令，你会看到输出是<code>/home/caiyi/Desktop/repos/manual</code>。</p>
+<p>通常来说，使用相对路径更方便，因为你不需要记住绝对路径。要进入当前工作目录下的一个文件夹，只需要输入<code>cd 文件夹名</code>即可。</p>
+<p>现在来看看<code>..</code>和<code>.</code>的用法。</p>
+<pre><code class="language-bash">cd ..
+</code></pre>
+<p>输入这个命令后，你的工作目录就变成了原来工作目录的上一级目录。输入<code>pwd</code>命令，你会看到输出是<code>/home/caiyi/Desktop/repos</code>。</p>
+<pre><code class="language-bash">cd .
+</code></pre>
+<p>输入这个命令后，你的工作目录不会发生变化。因为<code>.</code>表示当前工作目录。虽然<code>.</code>在现在看起来好像没什么用，但是在某些情况下，<code>.</code>是非常有用的。后面我们会提到。</p>
+<h3 id="执行程序或操作"><a class="header" href="#执行程序或操作">执行程序或操作</a></h3>
+<p>在命令行中，你可以执行程序或者操作。这些程序或操作可以是内建的，也可以是外部的。</p>
+<h4 id="内建命令"><a class="header" href="#内建命令">内建命令</a></h4>
+<h5 id="pwd"><a class="header" href="#pwd"><code>pwd</code></a></h5>
+<p><code>pwd</code>是<code>print working directory</code>的缩写。这个命令会输出当前工作目录的绝对路径。</p>
+<p>样例输出：</p>
+<pre><code class="language-bash">pwd
+</code></pre>
+<p>输出的内容是<code>/home/caiyi/</code>。</p>
+<h5 id="ls"><a class="header" href="#ls"><code>ls</code></a></h5>
+<p><code>ls</code>是<code>list</code>的缩写。这个命令会列出当前工作目录下的所有文件和文件夹。</p>
+<p>样例输出：</p>
+<pre><code class="language-bash">LICENSE  book/  book.toml  src/
+</code></pre>
+<p>这是当前本仓库的根目录的输出。你可以看到有四个文件和文件夹。文件夹都以<code>/</code>结尾，其他的都是文件。</p>
+<p><code>ls</code>命令还有一些选项，常用的有<code>-l</code>和<code>-a</code>。</p>
+<p><code>-l</code>选项会输出更详细的信息，包括文件的权限，所有者，大小，修改时间等。</p>
+<p>例如：</p>
+<pre><code class="language-bash">caiyi@archlinux ~/r/manual (use-git)&gt; ls -l
+total 16
+-rw-r--r-- 1 caiyi caiyi 1064 Aug  5 14:57 LICENSE
+drwxr-xr-x 7 caiyi caiyi 4096 Aug  5 19:03 book/
+-rw-r--r-- 1 caiyi caiyi  148 Aug  5 15:29 book.toml
+drwxr-xr-x 4 caiyi caiyi 4096 Aug  5 18:40 src/
+</code></pre>
+<p><code>-a</code>选项会输出所有的文件和文件夹，包括隐藏的文件和文件夹。隐藏的文件和文件夹以<code>.</code>开头。</p>
+<pre><code class="language-bash">caiyi@archlinux ~/r/manual (use-git)&gt; ls -a
+./  ../  .git/  .github/  .gitignore  LICENSE  book/  book.toml  src/
+</code></pre>
+<p>更多的用法请上网查询。</p>
+<h5 id="rm"><a class="header" href="#rm"><code>rm</code></a></h5>
+<p><code>rm</code>是<code>remove</code>的缩写。这个命令会删除文件或者文件夹。</p>
+<h6 id="删除文件"><a class="header" href="#删除文件">删除文件</a></h6>
+<p>直接输入<code>rm</code>，然后将文件路径作为参数传递给<code>rm</code>。</p>
+<p>例如</p>
+<pre><code class="language-bash">rm LICENSE
+rm ./LICENSE
+rm ../LICENSE
+</code></pre>
+<h6 id="删除文件夹"><a class="header" href="#删除文件夹">删除文件夹</a></h6>
+<p>如果一个文件夹不为空，你不能直接删除它。
+但是有一个简单的方法可以删除一个文件夹及其所有内容，就是使用<code>-r</code>选项。<code>r</code>是<code>recursive</code>的缩写，表示递归。</p>
+<pre><code class="language-bash">rm -r book/
+</code></pre>
+<p>这个命令会删除<code>book</code>文件夹及其所有内容。</p>
+<p>网上有很多人开玩笑的让新手输入<code>sudo rm -rf /</code>这个命令，这是<strong>相当危险的</strong>。它会递归删除根目录下的所有文件和文件夹。包括boot分区和所有数据资料。所以，<strong>请不要输入这个命令</strong>。</p>
+<p>同时，在删除当前文件夹下所有文件时，有些人喜欢用<code>rm -rf ./</code>，建议不要使用这种方法，而是输入完整的文件夹名字，因为它和上面的命令相似，如果你输入错误，就会发生灾难性的后果。</p>
+<h6 id="删除多个文件"><a class="header" href="#删除多个文件">删除多个文件</a></h6>
+<p>你可以一次删除多个文件。</p>
+<pre><code class="language-bash">rm LICENSE book.toml
+</code></pre>
+<p>这个命令会删除<code>LICENSE</code>和<code>book.toml</code>这两个文件。</p>
+<h5 id="mv"><a class="header" href="#mv">mv</a></h5>
+<p><code>mv</code>是<code>move</code>的缩写。这个命令可以移动文件或者文件夹。</p>
+<pre><code class="language-bash">mv LICENSE book/
+</code></pre>
+<p>这个命令会将<code>LICENSE</code>文件移动到<code>book</code>文件夹下。</p>
+<pre><code class="language-bash">mv book/ book-old/
+</code></pre>
+<p>这个命令会将<code>book</code>文件夹<strong>重命名</strong>为<code>book-old</code>。Unix下没有专门的重命名命令，重命名就是移动。</p>
+<h5 id="cp"><a class="header" href="#cp">cp</a></h5>
+<p><code>cp</code>是<code>copy</code>的缩写。这个命令可以复制文件或者文件夹。其语法和<code>mv</code>类似。这里不再赘述。</p>
+<pre><code class="language-bash">cp LICENSE book/
+</code></pre>
+<p>把<code>LICENSE</code>文件复制到<code>book</code>文件夹下。</p>
+<h5 id="mkdir"><a class="header" href="#mkdir">mkdir</a></h5>
+<p><code>mkdir</code>是<code>make directory</code>的缩写。这个命令可以创建文件夹。</p>
+<pre><code class="language-bash">mkdir new-folder
+</code></pre>
+<p>这个命令会在当前工作目录下创建一个叫<code>new-folder</code>的文件夹。</p>
+<h6 id="创建多级文件夹"><a class="header" href="#创建多级文件夹">创建多级文件夹</a></h6>
+<pre><code class="language-bash">mkdir -p new-folder/sub-folder
+</code></pre>
+<p>这个命令会创建一个叫<code>new-folder</code>的文件夹，然后在这个文件夹下创建一个叫<code>sub-folder</code>的文件夹。</p>
+<h5 id="touch"><a class="header" href="#touch">touch</a></h5>
+<p><code>touch</code>命令会创建一个空文件。</p>
+<pre><code class="language-bash">touch new-file
+</code></pre>
+<p>这个命令会在当前工作目录下创建一个叫<code>new-file</code>的文件。</p>
+<h4 id="外部命令"><a class="header" href="#外部命令">外部命令</a></h4>
+<p>常用的内部命令就以上这几个，它们覆盖了你在日常工作中的大部分需求。但是有时候你需要使用一些外部命令。</p>
+<h5 id="cat"><a class="header" href="#cat">cat</a></h5>
+<p><code>cat</code>是<code>concatenate</code>的缩写。这个命令会输出文件的内容。很多人认为<code>cat</code>是一个内建命令，但是它实际上是一个外部命令。</p>
+<pre><code class="language-bash">cat LICENSE
+</code></pre>
+<p>这个命令会输出<code>LICENSE</code>文件的内容。
+例如：</p>
+<pre><code class="language-ascii">caiyi@archlinux ~/r/manual (use-git)&gt; cat LICENSE 
+MIT License
+
+Copyright (c) 2024 NEUQ-CS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre>
+<h5 id="echo"><a class="header" href="#echo">echo</a></h5>
+<p><code>echo</code>命令会输出参数。</p>
+<pre><code class="language-bash">echo &quot;Hello, World!&quot;
+</code></pre>
+<p>这个命令会输出<code>Hello, World!</code>。</p>
+<h5 id="其他命令"><a class="header" href="#其他命令">其他命令</a></h5>
+<p>对于其他命令，只要它在环境变量<code>PATH</code>中，你就可以直接使用。使用<code>echo $PATH</code>，你可以看到<code>PATH</code>中包含了哪些路径。这些路径就是系统用来查找命令的路径。在这些路径下的<strong>可执行文件</strong>都可以直接使用。</p>
+<p>我们使用的<code>git</code>命令就是一个外部命令。如果是 Unix 系统，git 在<code>/usr/bin</code>或者<code>/usr/local/bin</code>中会有一个链接指向真正的可执行文件。在 Windows 系统中，git 会被安装到<code>C:\Program Files\Git\bin</code>中或者你自己指定的路径。</p>
+<p>如果你不知道一个命令是不是内建命令，你可以使用<code>which</code>命令来查找。</p>
+<h5 id="运行任意程序"><a class="header" href="#运行任意程序">运行任意程序</a></h5>
+<p>前面我们讲了运行在环境变量<code>PATH</code>中的程序。但是有时候你需要运行一个不在<code>PATH</code>中的程序。比如你用<code>gcc</code>在当前目录下编译了一个程序，你显然不会先把当前目录加入<code>PATH</code>再运行这个程序。</p>
+<p>这时候你可以使用相对路径或者绝对路径来运行这个程序。</p>
+<p>对于<strong>非当前目录</strong>下的程序，你可以使用相对路径或者绝对来运行，例如：</p>
+<pre><code class="language-bash"># 使用绝对路径
+caiyi@archlinux ~&gt; ~/argv_demo --version
+# 使用相对路径
+caiyi@archlinux ~&gt; ../tmp/argv_demo --version
+</code></pre>
+<p>对于当前目录下的程序，这时候就需要使用<code>.</code>了。你需要使用<code>./&lt;程序名&gt;</code>来运行这个程序，例如：</p>
+<pre><code class="language-bash">caiyi@archlinux ~&gt; ./argv_demo --version
+</code></pre>
+<p>这是为了避免歧义，如果不输入<code>./</code>，这种格式完全符合<em>命令</em>的格式，因此shell会把它当作命令来执行。</p>
+<h6 id="权限问题"><a class="header" href="#权限问题">权限问题</a></h6>
+<p>在 Unix 系统中，程序需要有执行权限（Executable）才能运行。有时你从网上下载了一个二进制文件，你发现你不能运行它，这是因为它没有执行权限。</p>
+<p>这时候就需要使用<code>chmod</code>命令来添加执行权限。</p>
+<pre><code class="language-bash">chmod +x argv_demo
+</code></pre>
+<p>这样你就可以运行这个程序了。</p>
+<p>UNIX的权限分为可读可写可执行三种权限，分别用<code>r</code>，<code>w</code>，<code>x</code>表示。对于文件夹，<code>x</code>表示可以进入这个文件夹。也可以使用三个比特二进制表示：</p>
+<pre><code>000
+</code></pre>
+<p>其中第一个比特表示可执行权限，第二个比特表示可写权限，第三个比特表示可读权限。</p>
+<p>当权限为0时表示为既不可读也不可写也不可执行。当权限为7时表示可读可写可执行。</p>
+<h3 id="链接"><a class="header" href="#链接">链接</a></h3>
+<p>在 Unix 系统中，有两种链接：符号链接（也叫软链接）和硬链接。</p>
+<p>它们都是一种特殊的文件，它们<strong>指向</strong>另一个文件。软链接在 Windows 下叫做快捷方式。软链接在 Unix 下有两种，一种是符号链接，另一种是硬链接。符号链接是一种特殊的文件，它指向另一个文件。硬链接是一个文件的另一个名字。</p>
+<p>指向意味着，当你访问这个链接时，实际上你访问的是被链接的文件。这样，你可以在不改变文件的情况下，改变文件的位置。同时，你也可以在不占用额外空间的情况下，创建一个文件的副本。</p>
+<h3 id="环境变量"><a class="header" href="#环境变量">环境变量</a></h3>
+<p>环境变量是一种特殊的变量，它们是在操作系统启动时设置的。环境变量是一个键值对。键是环境变量的名字，值是环境变量的值。</p>
+<p>对于新手来说，你只需要了解两个环境变量：<code>PATH</code>和<code>HOME</code>。</p>
+<p><code>PATH</code>是一个包含了系统用来查找命令的路径的变量。当你输入一个命令时，系统会在<code>PATH</code>中的路径下查找这个命令。如果找到了，就会执行这个命令。如果没有找到，就会提示<code>command not found</code>。</p>
+<p><code>HOME</code>是用户的家目录。在 Unix 系统中，用户的家目录一般是<code>/home/&lt;用户名&gt;</code>。前面说的<code>~</code>是家的别名是不准确的，事实上，它是<code>HOME</code>环境变量的值。如果你修改了<code>HOME</code>环境变量，<code>~</code>也会随之改变。</p>
+<p>你可以使用<code>echo</code>命令来查看环境变量的值。</p>
+<pre><code class="language-bash">echo $PATH
+</code></pre>
+<p>'$'符号是一个特殊字符，它表示后面的是一个变量。在这个例子中，<code>$PATH</code>表示<code>PATH</code>环境变量的值。</p>
+<p>在 C 语言中的完整main函数的形式是这样的：</p>
+<pre><code class="language-c">int main(int argc, char *argv[], char *envp[]) {
+    // argc 是参数的数量
+    // argv 是参数的数组
+    // envp 是环境变量的数组
+}
+</code></pre>
+<p>是的，这才是完整的main函数，它接受3个参数而不是大多数教程中的2个参数。</p>
+<p>遍历<code>envp</code>向量即可得到所有的环境变量。环境变量向量可能非常长，因此在这里不再展示。</p>
+<p>环境变量以及参数都是父进程在变为子进程时通过<code>exec</code>系统调用让<strong>操作系统</strong>传递给子进程的。并且<code>argc</code>,<code>argv</code>,<code>envp</code>是子进程主线程线程栈最顶端的元素。</p>
+<h3 id="命令的选项"><a class="header" href="#命令的选项">命令的选项</a></h3>
+<p>命令的选项也是一种参数，但是它们以<code>-</code>或者<code>--</code>开头。选项可以改变命令的行为。</p>
+<p><code>-</code>选项是单字母的选项，<code>--</code>选项是多字母的选项。</p>
+<p>对于某些程序，例如<code>ls</code>，<code>-</code>选项可以合并，比如<code>-a -l</code>可以写成<code>-al</code>。</p>
+<p>一般来说，对大部分程序使用<code>-h</code>或者<code>--help</code>选项可以查看帮助信息。</p>
+<p>选项分为两种：有参数的选项和无参数的选项。有参数的选项后面需要跟一个参数，无参数的选项不需要。</p>
+<p>上面提到的<code>--help</code>就是是无参数的选项。</p>
+<p>例如，某款游戏可能接受<code>--fullscreen true</code>这样的选项，<code>--fullscreen</code>是有参数的选项，<code>true</code>是这个选项的参数。但是它们都是命令中的参数。</p>
+<h3 id="管道"><a class="header" href="#管道">管道</a></h3>
+<p>管道是Unix中较为复杂的概念，在这里我只讲如何使用。</p>
+<p>管道的作用是<strong>重定向命令的输出</strong>。你可以把一个命令的输出作为另一个命令的输入。也可以把一个命令的输出保存到文件中。</p>
+<h4 id="重定向到另一个程序的标准输入"><a class="header" href="#重定向到另一个程序的标准输入">重定向到另一个程序的标准输入</a></h4>
+<pre><code class="language-bash">echo &quot;Hello, World!&quot; | cat
+</code></pre>
+<p>首先，<code>echo &quot;Hello, World!&quot;</code>会输出<code>Hello, World!</code>。然后，<code>|</code>会把这个输出重定向到<code>cat</code>命令的标准输入。<code>cat</code>会输出这个输入。所以输出还是<code>Hello, World!</code>。</p>
+<h4 id="重定向到文件"><a class="header" href="#重定向到文件">重定向到文件</a></h4>
+<pre><code class="language-bash">echo &quot;Hello, World!&quot; &gt; hello.txt
+</code></pre>
+<p>这个命令会把<code>echo &quot;Hello, World!&quot;</code>的输出重定向到<code>hello.txt</code>文件中。<code>&gt;</code>是重定向的符号。</p>
+<p>现在你可以使用<code>cat</code>命令查看这个文件的内容。</p>
+<pre><code class="language-bash">cat hello.txt
+</code></pre>
+<h4 id="重定向到文件的末尾"><a class="header" href="#重定向到文件的末尾">重定向到文件的末尾</a></h4>
+<pre><code class="language-bash">echo &quot;Hello, World!&quot; &gt;&gt; hello.txt
+</code></pre>
+<p>这个命令会把<code>echo &quot;Hello, World!&quot;</code>的输出<strong>追加</strong>到<code>hello.txt</code>文件的末尾。<code>&gt;&gt;</code>是追加重定向的符号。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../use-git/configure.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../use-git/try-git.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../use-git/configure.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../use-git/try-git.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

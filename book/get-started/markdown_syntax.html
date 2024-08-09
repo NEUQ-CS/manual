@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Markdown 语法 - 東秦計科人生存手冊</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 說明</a></li><li class="chapter-item expanded affix "><li class="part-title">通用篇</li><li class="chapter-item expanded "><a href="../get-started/markdown_syntax.html" class="active"><strong aria-hidden="true">2.</strong> Markdown 语法</a></li><li class="chapter-item expanded "><a href="../get-started/vscode.html"><strong aria-hidden="true">3.</strong> 使用 Visual studio code</a></li><li class="chapter-item expanded "><a href="../get-started/about-cs.html"><strong aria-hidden="true">4.</strong> 计算机类</a></li><li class="chapter-item expanded "><a href="../get-started/about-ei.html"><strong aria-hidden="true">5.</strong> 电子信息类篇</a></li><li class="chapter-item expanded affix "><li class="part-title">Git 的使用</li><li class="chapter-item expanded "><a href="../use-git/whatis.html"><strong aria-hidden="true">6.</strong> 什么是Git</a></li><li class="chapter-item expanded "><a href="../use-git/installation.html"><strong aria-hidden="true">7.</strong> 安装 Git</a></li><li class="chapter-item expanded "><a href="../use-git/configure.html"><strong aria-hidden="true">8.</strong> 配置 Git及简要的命令行教程</a></li><li class="chapter-item expanded "><a href="../use-git/hug-cli.html"><strong aria-hidden="true">9.</strong> 认识命令行</a></li><li class="chapter-item expanded "><a href="../use-git/try-git.html"><strong aria-hidden="true">10.</strong> Git 入门</a></li><li class="chapter-item expanded "><a href="../use-git/get-started-with-gh.html"><strong aria-hidden="true">11.</strong> 开始使用 GitHub</a></li><li class="chapter-item expanded "><a href="../use-git/conflict.html"><strong aria-hidden="true">12.</strong> 解决冲突</a></li><li class="chapter-item expanded "><a href="../use-git/best-practice.html"><strong aria-hidden="true">13.</strong> 养成良好的 Git 使用习惯</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">東秦計科人生存手冊</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<h3 id="markdown语法市面上有很多编辑器笔者这里使用的是typora"><a class="header" href="#markdown语法市面上有很多编辑器笔者这里使用的是typora">Markdown语法（市面上有很多编辑器，笔者这里使用的是Typora）</a></h3>
+<p><a href="https://markdown.com.cn/basic-syntax/">Markdown 基本语法 | Markdown 官方教程</a>，这里非常详细的记录了markdown常用的各种语法，本文作为介绍目标，只指出作者认为使用得多的一部分。</p>
+<ol>
+<li><strong>创建不同级标题</strong></li>
+</ol>
+<p>​	markdown语法创建标题只需要输入<code>#</code>+<code>space(空格)</code>，一个<code>#</code>表示一级标题，两个<code>#</code>，即<code>##</code>，表示二级标题，以此类推，几个<code>#</code>就是几级标题。</p>
+<p><strong>演示如下</strong></p>
+<hr />
+<p><strong>源代码</strong></p>
+<pre><code class="language-markdown"># 一级标题
+## 二级标题
+## 三级标题
+</code></pre>
+<h1 id="一级标题"><a class="header" href="#一级标题">一级标题</a></h1>
+<h2 id="二级标题"><a class="header" href="#二级标题">二级标题</a></h2>
+<h3 id="三级标题"><a class="header" href="#三级标题">三级标题</a></h3>
+<hr />
+<p><strong>演示结束</strong></p>
+<ol start="2">
+<li>
+<p><strong>强调语法</strong></p>
+<ul>
+<li>
+<p><strong>粗体 (Blod)</strong></p>
+<p>要加粗文本，请在单词或短语的前后各添加两个星号<code>**</code>，效果如标题。</p>
+</li>
+<li>
+<p><em>斜体（Italic)</em></p>
+<p>要用斜体显示文本，请在单词或短语前后添加一个星号<code>*</code>，效果如标题。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>引用</strong></p>
+<p>要创建块引用，请在段落前添加一个 <code>&gt;</code> 符号。</p>
+<p><strong>演示如下</strong> </p>
+<hr />
+<p><strong>源代码</strong></p>
+<pre><code class="language-Markdown">&gt; 东北大学计算机与通信工程学院
+</code></pre>
+<blockquote>
+<p>东北大学计算机与通信工程学院</p>
+</blockquote>
+</li>
+</ol>
+<hr />
+<p><strong>演示结束</strong></p>
+<ol start="4">
+<li>
+<p><strong>创建列表</strong></p>
+<p>由于篇幅限制，笔者这里只介绍了有序列表。同样，对于其他用法请参考文处给出的网页。</p>
+<p>要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。</p>
+<p><strong>演示如下</strong> </p>
+<hr />
+<p><strong>源代码</strong></p>
+<pre><code class="language-Markdown">1. First item
+2. Second item
+3. Third item
+4. Fourth item
+</code></pre>
+</li>
+<li>
+<p>First item</p>
+</li>
+<li>
+<p>Second item</p>
+</li>
+<li>
+<p>Third item</p>
+</li>
+<li>
+<p>Fourth item</p>
+</li>
+</ol>
+<hr />
+<p><strong>演示结束</strong></p>
+<ol start="5">
+<li>
+<p><strong>代码块的使用</strong></p>
+<p>用三个 `，即 ```` `，输入车便可以创建代码块，这一点在大一上的代码学习中有很大作用，以下代码为笔者展示C++的第一段程序</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+int main(){
+	std::cout&lt;&lt;&quot;Welcome to Northeast University at Qinhuangdao!&quot;;
+    return 0;
+}
+</code></pre>
+<p><strong>TIPS：</strong></p>
+<p>markdown的分享就结束了，但是作为一款功能强大的编辑语言，更多的功能在开头的文档等你探索。</p>
+<p>笔者推荐的软件有：</p>
+</li>
+</ol>
+<p>地址：   <a href="https://typoraio.cn/">Typora</a> </p>
+<hr />
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../get-started/vscode.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../get-started/vscode.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
