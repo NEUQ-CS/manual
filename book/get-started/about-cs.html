@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>计算机类 - 東秦計科人生存手冊</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 說明</a></li><li class="chapter-item expanded affix "><li class="part-title">通用篇</li><li class="chapter-item expanded "><a href="../get-started/markdown_syntax.html"><strong aria-hidden="true">2.</strong> Markdown 语法</a></li><li class="chapter-item expanded "><a href="../get-started/vscode.html"><strong aria-hidden="true">3.</strong> 使用 Visual studio code</a></li><li class="chapter-item expanded "><a href="../get-started/about-cs.html" class="active"><strong aria-hidden="true">4.</strong> 计算机类</a></li><li class="chapter-item expanded "><a href="../get-started/about-ei.html"><strong aria-hidden="true">5.</strong> 电子信息类篇</a></li><li class="chapter-item expanded affix "><li class="part-title">Git 的使用</li><li class="chapter-item expanded "><a href="../use-git/whatis.html"><strong aria-hidden="true">6.</strong> 什么是Git</a></li><li class="chapter-item expanded "><a href="../use-git/installation.html"><strong aria-hidden="true">7.</strong> 安装 Git</a></li><li class="chapter-item expanded "><a href="../use-git/configure.html"><strong aria-hidden="true">8.</strong> 配置 Git及简要的命令行教程</a></li><li class="chapter-item expanded "><a href="../use-git/hug-cli.html"><strong aria-hidden="true">9.</strong> 认识命令行</a></li><li class="chapter-item expanded "><a href="../use-git/try-git.html"><strong aria-hidden="true">10.</strong> Git 入门</a></li><li class="chapter-item expanded "><a href="../use-git/get-started-with-gh.html"><strong aria-hidden="true">11.</strong> 开始使用 GitHub</a></li><li class="chapter-item expanded "><a href="../use-git/conflict.html"><strong aria-hidden="true">12.</strong> 解决冲突</a></li><li class="chapter-item expanded "><a href="../use-git/best-practice.html"><strong aria-hidden="true">13.</strong> 养成良好的 Git 使用习惯</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">東秦計科人生存手冊</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="计算机类篇"><a class="header" href="#计算机类篇">计算机类篇</a></h2>
+<blockquote>
+<hr />
+<blockquote>
+<h2 id="入门"><a class="header" href="#入门">入门</a></h2>
+</blockquote>
+<h3 id="声明"><a class="header" href="#声明">声明</a></h3>
+<p>笔者也是个蒟蒻，就个人的粗糙经历来给学弟学妹们浅谈一下。糕手很多，欢迎热爱算法的有志之士加入<strong>NEUQ-ACM俱乐部</strong>。</p>
+<hr />
+<blockquote>
+<h3 id="语言"><a class="header" href="#语言">语言</a></h3>
+</blockquote>
+<p>语言的学习是基础的，也是最快的，初学<code>C++</code>可能有点门槛，但语言之间的共性会使得后续其他语言的学习更容易，所以请打开编辑器，从<code>Hello，world</code>开始吧！</p>
+<pre><code class="language-C++">#incloud &lt;bits/stdc++.h&gt;
+using namespace std;
+int main(){
+ cout&lt;&lt;&quot;Hello,World!&quot;;
+ return 0;
+}
+</code></pre>
+<hr />
+<h3 id="怎么学"><a class="header" href="#怎么学">怎么学</a></h3>
+<p>一切以实操为基础，你可以通过啃书，书上有很多细节和样例，但一定要理解之后自己手打一遍。</p>
+<p>关于入门看什么书，但从语言来说，你们的教材是谭浩强，但个人不推荐，可以试试<strong>C++ Primer</strong>和<strong>C++ Primer Plus</strong>（tb/pdd直接搜，出来的白皮封面大抵就是了，买来可别堆灰哦）</p>
+<p>语言的学习很快，具体的语法也是错综复杂，但在算法领域大多都用不到，不必偏执.</p>
+<hr />
+<blockquote>
+<h3 id="算法"><a class="header" href="#算法">算法</a></h3>
+</blockquote>
+<p>学算法前先学会打暴力，如果学会了打暴力，那么恭喜，你已经超过大部分人了，可以尝试在蓝桥杯中拿个省一</p>
+<h3 id="怎么学-1"><a class="header" href="#怎么学-1">怎么学</a></h3>
+<p>入门和学习在网上有很多资源，包括<code>b站</code>，<code>csdn</code>，<code>博客园</code>，<code>acwing</code>等等都有教学</p>
+<p>也有专门的算法竞赛书籍，洛谷的**《深入浅出程序设计竞赛》<strong>和清华的</strong>《算法竞赛入门经典》**等等</p>
+<p>基础的算法入门很快，而做题是需要人类智慧的。</p>
+<p>网上有很多OJ，新手建议<code>洛谷</code>和<code>acwing</code>，他们也有入门题单等等。</p>
+<p>刷题量差不多了，洛谷能看懂绿题和蓝题的题解，掌握了基础的算法（二分，DFS，BFS，动态规划，树状数组，线段树，并查集，二分图......）之后，就可以开始打一些网上的比赛了，牛客，洛谷，leetcode，codeforces，atcoder等平台都可以去打，在打比赛中更能锻炼自己的算法思维和码力。</p>
+<p>至于进阶阶段的算法学习，acwing有提高和进阶的课程，也有一个网站可以参考学习<a href="https://oi-wiki.org/">OI Wiki - OI Wiki (oi-wiki.org)</a></p>
+<p>至于拿奖，大一上除了个别OI爷有实力能直接打XCPC，暂时没有学校认定能加分的算法竞赛，不过有ACM的招新赛，欢迎大家在暑假以及开学后这段时间迅速入门C++，学会基本的暴力和解决问题的能力就能成为我们ACM俱乐部预备队的一员了。</p>
+<p>不过大一下有很多比赛，希望大家好好沉淀，打几个比赛把科创分加满。</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../get-started/vscode.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../get-started/about-ei.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../get-started/vscode.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../get-started/about-ei.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
