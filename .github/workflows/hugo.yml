@@ -47,7 +47,7 @@ jobs:
         run: |
           hugo \
             --gc --minify \
-            --baseURL "${{ env.BASE_URL }}/"
+            --baseURL "${{ env.BASE_URL }}"
 
       - name: Publish to deploy branch
         run: |
