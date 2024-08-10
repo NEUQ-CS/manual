@@ -1,3 +1,10 @@
+---
+title: 说明
+type: docs
+# toc: false
+next: get-started/
+---
+
 # 暑假不发霉手册
 
 > ### 作者栏 （*排名不分先后*）
