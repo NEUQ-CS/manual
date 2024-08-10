@@ -10,7 +10,7 @@
 
 #### 手动安装
 
-前往 [Visual Studio Code 官网](https://git-scm.com/download/windows)。你应该会看到和下图类似的页面：
+前往 [Visual Studio Code 官网](https://code.visualstudio.com/)。你应该会看到和下图类似的页面：
 
 ![](./assets/vscode_download.png)
 
