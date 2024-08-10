@@ -1,10 +1,9 @@
 ---
-title: 说明
+title: 暑假不发霉手册
 type: docs
+weight: 0
 next: get-started/
 ---
-
-# 暑假不发霉手册
 
 ### 作者栏 （*排名不分先后*）
 
