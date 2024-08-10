@@ -84,6 +84,8 @@ Shell[^2] 是一个命令行解释器，它是一个程序，用于解释用户�
 
 <video src="./assets/add-profile.mp4" controls="controls"></video>
 
+你需要在网页版阅读本文才能看到视频。
+
 ## Linux
 
 跳转到你的发行版的部分，按照你的发行版安装即可。
