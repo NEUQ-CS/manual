@@ -1,3 +1,11 @@
+---
+title: 02.使用 Visual Studio Code
+type: docs
+pre: get-started/markdown_syntax
+next: get-started/about-cs
+---
+
+
 # VScode
 
 `Visual Studio Code` 是由微软开发的一款轻量级代码编辑器。
