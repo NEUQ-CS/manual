@@ -37,7 +37,7 @@ Git 在操作 Git 仓库时，会递归的从当前文件夹向上查找`.git`�
 
 具有权限后，就能够克隆仓库了，使用以下命令即可：
 ```bash
-git clone https://github.dev/NEUQ-CS/manual.git
+git clone https://github.com/NEUQ-CS/manual.git
 ```
 
 记得将仓库地址更换成你想克隆的仓库的地址。克隆结束后，在**当前目录**下会产生一个与仓库名一致的文件夹，在本例中，是`manual`。
@@ -49,7 +49,7 @@ git clone https://github.dev/NEUQ-CS/manual.git
 
 在地址后面加上指定路径即可：
 ```bash
-git clone https://github.dev/NEUQ-CS/manual.git path/to/repo
+git clone https://github.com/NEUQ-CS/manual.git path/to/repo
 ```
 
 注意，仓库里的文件会直接存在你指定的文件夹里面，而不是在你指定的目录里放仓库文件夹。
@@ -58,7 +58,7 @@ git clone https://github.dev/NEUQ-CS/manual.git path/to/repo
 
 加上参数`-b <分支名>`即可，例如:
 ```bash
-git clone https://github.dev/NEUQ-CS/manual.git -b master
+git clone https://github.com/NEUQ-CS/manual.git -b master
 ```
 
 这将指定需要克隆master分支.
@@ -69,7 +69,7 @@ git clone https://github.dev/NEUQ-CS/manual.git -b master
 
 使用`--depth <深度>`来指定克隆深度：
 ```bash
-git clone https://github.dev/NEUQ-CS/manual.git --depth=1
+git clone https://github.com/NEUQ-CS/manual.git --depth=1
 ```
 
 仅克隆主分支上包含最新一个提交的完整仓库，克隆的仓库**不含有**任何历史记录。不推荐使用，除非你只是为了临时下载代码并且不需要历史记录和其他分支。
@@ -371,6 +371,18 @@ git rebase <另一个分支>
 ```
 
 变基会产生一个新的提交commit，这个提交包含了两个分支的所有修改。
+
+## 常见误区
+
+Git 命令行 一般情况下仅在本地管理仓库，不会实时修改远程仓库。当且仅当执行以下命令时会通过网络与远程仓库交互：
+
+#### `git fetch` 和 `git pull`
+
+执行这两个命令时，仅会**读取**远程仓库的信息，不会修改远程仓库的信息。`git fetch`会将远程仓库的信息拉取到本地仓库，`git pull`会将远程仓库的信息拉取到本地仓库并合并到当前分支。 
+
+#### `git push`
+
+执行这个命令时，会将本地仓库的信息推送到远程仓库，这会修改远程仓库的信息。
 
 ## 总结
 
