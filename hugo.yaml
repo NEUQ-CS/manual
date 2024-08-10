@@ -53,3 +53,21 @@ params:
   theme:
     default: dark
     displayToggle: true
+
+  comments:
+    enable: true
+    type: giscus
+
+    # https://giscus.app/
+    giscus:
+      repo: neuq-cs/manual
+      repoId: R_kgDOMfX9Vg
+      category: General
+      categoryId: DIC_kwDOMfX9Vs4ChhwM
+      mapping: url
+      strict: 0
+      reactionsEnabled: 1
+      emitMetadata: 0
+      inputPosition: top
+      lang: zh-CN
+      crossorigin: anonymous
