@@ -4,3 +4,8 @@ language = "zh-cn"
 multilingual = false
 src = "src"
 title = "東秦計科人生存手冊"
+
+[output.html]
+git-repository-url = "https://github.com/neuq-cs/manual"
+curly-quotes = true
+mathjax-support = true
