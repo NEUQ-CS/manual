@@ -54,9 +54,6 @@ winget install -e --id Microsoft.VisualStudioCode
 
 跳转到你的发行版的部分，按照你的发行版安装即可。
 
-如果包管理器没有对应的软件源，可以在 [Visual Studio Code 下载页面](https://code.visualstudio.com/Download) 下载对应发行版的软件包，  
-将以下命令中的 `code` 替换成软件包的文件路径后再运行命令即可。
-
 #### Arch Linux
 
 Arch Linux 的官方源不提供 VScode，但 AUR 有很多第三方打包的软件包。
