@@ -8,7 +8,11 @@
 
 下面让我们来产生一个冲突。
 
-请加入来到[这个仓库](https://github.com/NEUQ-CS/solve-conflict)，点击右上角的`Use this template`，然后创建一个新的仓库。然后将这个仓库克隆到本地。
+请完整克隆这个仓库[这个仓库](https://github.com/NEUQ-CS/solve-conflict)的所有分支。你可以使用以下命令：
+
+```bash
+git clone https://github.com/NEUQ-CS/solve-conflict.git
+```
 
 进入仓库后，打开`README.md`查看，又是1加到100的作业。
 
