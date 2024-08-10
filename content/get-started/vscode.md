@@ -1,8 +1,7 @@
 ---
-title: 02.使用 Visual Studio Code
+title: 使用 Visual Studio Code
 type: docs
-pre: get-started/markdown_syntax
-next: get-started/about-cs
+weight: 2
 ---
 
 

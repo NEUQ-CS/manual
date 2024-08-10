@@ -1,8 +1,7 @@
 ---
-title: 03.计算机类篇
+title: 计算机类篇
 type: docs
-pre: get-started/vscode
-next: get-started/about-ei
+weight: 3
 ---
 
  ------

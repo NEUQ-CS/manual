@@ -1,7 +1,7 @@
 ---
-title: 04.电子信息类篇
+title: 电子信息类篇
 type: docs
-pre: get-started/about-cs
+weight: 4
 ---
 
 软件学习声明见前言，如做商用与科研，请请示团队

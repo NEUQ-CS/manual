@@ -1,8 +1,7 @@
 ---
-title: 01.Markdown语法
+title: Markdown语法
 type: docs
-pre: get-started/
-next: get-started/vscode
+weight: 1
 ---
 
 ### Markdown语法（市面上有很多编辑器，笔者这里使用的是Typora）

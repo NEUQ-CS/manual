@@ -1,4 +1,8 @@
-# 养成良好的 Git 使用习惯
+---
+title: 养成良好的 Git 使用习惯
+type: docs
+weight: 8
+---
 
 本文将介绍一些 Git 的最佳实践，帮助你更好地使用 Git。
 

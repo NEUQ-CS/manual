@@ -1,4 +1,8 @@
-# 安装 Git
+---
+title: 安装 Git
+type: docs
+weight: 2
+---
 
 前文提到，Git`可以在任何操作系统上运行`。那么，本文将讲解在 Windows, Linux，以及 macOS 上如何安装 Git。
 
