@@ -1,4 +1,8 @@
-# 配置 Git及简要的命令行教程
+---
+title: 配置 Git 命令行
+type: docs
+weight: 3
+---
 
 ## 配置 Git
 

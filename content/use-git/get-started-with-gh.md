@@ -1,4 +1,8 @@
-# 开始使用 GitHub
+---
+title: 开始使用 GitHub
+type: docs
+weight: 6
+---
 
 要使用 GitHub 托管你的代码，你需要一个 GitHub 账号。这部分不再赘述，你可以自行注册。本文假设你已经注册了 GitHub 账号。
 

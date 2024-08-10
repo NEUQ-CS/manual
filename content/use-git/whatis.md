@@ -1,4 +1,8 @@
-# 什么是 Git
+---
+title: 初识 Git
+type: docs
+weight: 1
+---
 
 你在任何地方都可以找到这样一句话
 

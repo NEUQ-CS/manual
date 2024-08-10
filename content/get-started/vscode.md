@@ -1,3 +1,10 @@
+---
+title: 使用 Visual Studio Code
+type: docs
+weight: 2
+---
+
+
 # VScode
 
 `Visual Studio Code` 是由微软开发的一款轻量级代码编辑器。

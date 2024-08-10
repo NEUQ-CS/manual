@@ -1,1 +1,12 @@
 book
+
+# Hugo output
+public/
+resources/
+.hugo_build.lock
+
+# Editor
+.vscode/
+
+# .NET project files
+*.sln

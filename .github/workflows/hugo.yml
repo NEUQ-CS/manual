@@ -1,8 +1,4 @@
-# Sample workflow for building and deploying a mdBook site to GitHub Pages
-#
-# To get started with mdBook see: https://rust-lang.github.io/mdBook/index.html
-#
-name: Deploy mdBook site to branch
+name: Deploy hugo site to branch
 
 on: [push, workflow_dispatch]
 
@@ -24,16 +20,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      MDBOOK_VERSION: 0.4.36
+      HUGO_VERSION: 0.126.3
+      BASE_URL: "https://manual.caiyi1.me/"
     steps:
       - uses: actions/checkout@v4
-      - name: Install mdBook
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Setup Hugo
         run: |
-          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
-          rustup update
-          cargo install --version ${MDBOOK_VERSION} mdbook
-      - name: Build with mdBook
-        run: mdbook build
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Build with Hugo
+        env:
+          # For maximum backward compatibility with Hugo modules
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: |
+          hugo \
+            --gc --minify \
+            --baseURL "${{ env.BASE_URL }}"
+
       - name: Publish to deploy branch
         run: |
           # Setup Git
@@ -48,8 +59,8 @@ jobs:
           # Create commit
 
           # The output directory is ignored by default, so force add it
-          git add -f book
-          git commit -m "Deploy mdBook to ${DEPLOY_BRANCH}"
+          git add -f ./public
+          git commit -m "Deploy hugo to ${DEPLOY_BRANCH}"
 
           # Push changes
           git push origin HEAD:${DEPLOY_BRANCH} -f
