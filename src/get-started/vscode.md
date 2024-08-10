@@ -35,7 +35,7 @@
 例如，使用包管理器 winget 来安装 VScode，只需要运行以下命令:
 
 ```bash
-winget install "Visual Studio Code"
+winget install -e --id Microsoft.VisualStudioCode
 ```
 
 ### Mac
