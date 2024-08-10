@@ -59,15 +59,68 @@ winget install -e --id Microsoft.VisualStudioCode
 
 #### Arch Linux
 
+Arch Linux 的官方源不提供 VScode，但 AUR 有很多第三方打包的软件包。
+
+下面是三种使用 AUR 安装 VScode 的方式：
+
+##### 使用 `yay` AUR helper
+
 ```bash
-sudo pacman -S code
+yay -S visual-studio-code-bin
+```
+
+##### 使用 `paru` AUR helper
+
+```bash
+paru -S visual-studio-code-bin
+```
+
+##### 手动安装
+
+使用手动安装将丧失自动更新的功能。
+```
+git clone https://aur.archlinux.org/visual-studio-code-bin.git
+cd visual-studio-code-bin
+makepkg -si
 ```
 
 #### Debian/Ubuntu
 
+Ubuntu 下有两种推荐的方式进行安装：
+
+##### 1. 添加 Microsoft 源并使用 apt 安装
+
+添加 Microsoft 源：
 ```bash
-sudo apt install code
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+rm -f packages.microsoft.gpg
 ```
+
+安装 VScode：
+```bash
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code # or code-insiders
+```
+
+##### 2. 手动下载并安装
+
+前往 [Visual Studio Code 下载页面](https://code.visualstudio.com/Download)，下载 `.deb` 格式的软件包，
+
+然后双击软件包即可自动打开软件包管理器进行安装，或使用命令：
+
+```bash
+sudo dpkg -i code_*.deb
+```
+
+使用手动安装将丧失自动更新的功能。
+
+##### 关于 snap
+
+千万不要使用 snap，snap有严重的性能问题，而且会导致一些奇怪的问题。
 
 #### Fedora
 
@@ -77,9 +130,7 @@ sudo dnf install code
 
 #### openSUSE
 
-```bash
-sudo zypper install code
-```
+参考 [openSUSE 官方文档](https://code.visualstudio.com/docs/setup/linux#_opensuse)。需要注意的是，如果使用手动安装的方式，则丧失了自动更新的功能。
 
 ## 安装插件
 
