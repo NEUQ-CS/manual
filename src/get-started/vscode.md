@@ -178,25 +178,29 @@ linux 系统下，最常用的 C/C++ 编译器毫无疑问是 `GCC`（GNU 编译
 #### Arch Linux
 
 ```bash
-sudo pacman -S g++
+# 安装相关的编译工具
+sudo pacman -S base-devel
 ```
 
 #### Debian/Ubuntu
 
 ```bash
-sudo apt install g++
+# 安装相关的编译工具
+sudo apt install build-essential
 ```
 
 #### Fedora
 
 ```bash
-sudo dnf install g++
+sudo dnf install gcc
+sudo dnf install gcc-c++
 ```
 
 #### openSUSE
 
 ```bash
-sudo zypper install g++
+sudo zypper install gcc
+sudo zypper install gcc-c++
 ```
 
 ### Mac
