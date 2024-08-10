@@ -1,6 +1,7 @@
 ---
-title: 01.基础篇
+title: 基础篇
 type: docs
-pre: get-started/
+weight: 1
+pre: /
 next: get-started/markdown_syntax
 ---
