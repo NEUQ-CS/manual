@@ -1,0 +1,49 @@
+# Hugo configuration file
+title: 东秦计科人生存手册
+baseURL: "https://manual.caiyi1.me/"
+
+enableGitInfo: true
+enableEmoji: true
+hasCJKLanguage: true
+
+defaultContentLanguage: zh-cn
+
+# import hextra as module
+module:
+  imports:
+  - path: github.com/imfing/hextra
+
+markup:
+  # allow raw html
+  goldmark:
+    renderer:
+      unsafe: true
+
+  # enable hextra syntax highlight
+  highlight:
+    noClasses: false
+
+menu:
+  main:
+    - name: Search
+      weight: 1
+      params:
+        type: search
+    - name: GitHub
+      weight: 2
+      url: "https://github.com/neuq-cs/manual"
+      params:
+        icon: github
+
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: false
+
+  footer:
+    displayCopyright: false
+    displayPoweredBy: true
+
+  editURL:
+    enable: true
+    base: "https://github.com/neuq-cs/manual/edit/master/content"
