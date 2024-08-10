@@ -7,6 +7,8 @@ enableEmoji: true
 hasCJKLanguage: true
 
 defaultContentLanguage: zh-cn
+enableInlineShortcodes: true
+
 
 # import hextra as module
 module:
@@ -47,3 +49,7 @@ params:
   editURL:
     enable: true
     base: "https://github.com/neuq-cs/manual/edit/master/content"
+
+  theme:
+    default: dark
+    displayToggle: true
