@@ -86,7 +86,8 @@ Shell[^2] 是一个命令行解释器，它是一个程序，用于解释用户�
 
 你也可以使用Windows Terminal，请先按照以下视频添加Git Bash的配置。
 
-<video src="./assets/add-profile.mp4" controls="controls"></video>
+<!-- 由于Hugo会为每一个页面建立独立的目录，而 html 组件里的路径不会被修正，因此要手动回到父目录 -->
+<video src="../assets/add-profile.mp4" controls="controls"></video>
 
 你需要在网页版阅读本文才能看到视频。
 
