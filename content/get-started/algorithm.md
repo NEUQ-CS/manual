@@ -2,6 +2,7 @@
 title: 算法入门
 type: docs
 weight: 6
+math: true
 ---
 
 # 初识算法
