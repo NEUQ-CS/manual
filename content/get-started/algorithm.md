@@ -1,3 +1,9 @@
+---
+title: 算法入门
+type: docs
+weight: 6
+---
+
 # 初识算法
 
 算法（algotithm）顾名思义，就是计算的方法。    
