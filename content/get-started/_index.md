@@ -11,4 +11,5 @@ next: get-started/markdown_syntax
     {{< card link="vscode" title="短代码" icon="template" >}}
     {{< card link="about-cs" title="计算机类篇" icon="document-duplicate" >}}
     {{< card link="about-ei" title="电子信息类篇" icon="adjustments" >}}
+    {{< card link="algorithm" title="算法入门" icon="academic-cap" >}}
 {{< /cards >}}
