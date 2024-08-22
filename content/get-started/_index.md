@@ -12,4 +12,5 @@ next: get-started/markdown_syntax
     {{< card link="about-cs" title="计算机类篇" icon="document-duplicate" >}}
     {{< card link="about-ei" title="电子信息类篇" icon="adjustments" >}}
     {{< card link="algorithm" title="算法入门" icon="academic-cap" >}}
+    {{< card link="电子信息类-保研" title="电子信息类-保研" >}}
 {{< /cards >}}
