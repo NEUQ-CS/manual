@@ -99,7 +99,7 @@ weight: 1
    用三个 \`，即 ```` `，输入车便可以创建代码块，这一点在大一上的代码学习中有很大作用，以下代码为笔者展示C++的第一段程序
 
    ```c++
-   #include <iostream
+   #include <iostream>
    int main(){
    	std::cout<<"Welcome to Northeast University at Qinhuangdao!";
        return 0;
