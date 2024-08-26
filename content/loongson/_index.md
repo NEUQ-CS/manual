@@ -36,4 +36,4 @@ weight: 3
 
 点击[此链接](https://qm.qq.com/cgi-bin/qm/qr?authKey=CLA85w8LIJrFVEf68my%2BpaQc3mZf4l7ShwcZZmCYcpK%2FZgfF%2FohUuj%2BzwtvLfnoK&k=u9H0LsQpTafyfTO3nsucjCVF_u8GAAVZ&noverify=0)，或扫码下面的二维码，立刻加入2024龙芯实验室交流群！
 
-![招新群二维码](./assets/qr.jpg)
+<img src="./assets/qr.jpg" width="60%" alt="招新群二维码" loading="lazy">
