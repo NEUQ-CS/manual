@@ -1,7 +1,7 @@
 ---
-title: 3. 进阶
+title: 进阶
 type: docs
-weight: 4
+weight: 5
 ---
 
 使用 Vim 最重要的还是实际操作，也许在小型简单项目全程使用 Vim 最为主要的编辑器是个不错的选择。VSCode、Jetbrains IDEs 都有 Vim-mode 插件，可以享受 Vim 带来的便捷。

@@ -1,7 +1,7 @@
 ---
-title: 1. 初识 Vim
+title: 初识 Vim
 type: docs
-weight: 2
+weight: 3
 ---
 
 ## 介绍

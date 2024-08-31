@@ -1,5 +1,5 @@
 ---
-title: 0. 背景
+title: 背景
 type: docs
 weight: 1
 ---
@@ -16,4 +16,4 @@ sudo apt update && sudo apt upgrade
 
 ![apt-failure](./assets/apt-failure.webp "From CSDN article 53939990")
 
-OMG！看来得换国内源了 ~~，是时候用这个借口来学习 Vim 了~~ 。
+OMG！看来得换国内源了，用 Vim 修改一下 `/etc/apt/sources.list` ~~，是时候用这个借口来学习 Vim 了~~ 。

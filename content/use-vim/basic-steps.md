@@ -1,7 +1,7 @@
 ---
-title: 2. 基本步骤
+title: 基本步骤
 type: docs
-weight: 3
+weight: 4
 ---
 
 现在，来用 Vim 写个 C 程序吧。
