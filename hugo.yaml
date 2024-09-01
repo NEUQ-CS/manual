@@ -64,7 +64,7 @@ params:
       repoId: R_kgDOMfX9Vg
       category: General
       categoryId: DIC_kwDOMfX9Vs4ChhwM
-      mapping: url
+      mapping: pathname
       strict: 0
       reactionsEnabled: 1
       emitMetadata: 0
