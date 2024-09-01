@@ -2,6 +2,7 @@
 title: Vim 使用指南
 type: docs
 weight: 3
+next: use-vim/background/
 ---
 
 ## 开始之前
@@ -16,7 +17,7 @@ weight: 3
 
 ### 环境要求
 
-此部分需要读者具有一定的 Linux 命令行基础，请在任意形式的 GNU/Linux 或 macOS 下操作，教程的环境为 ArchLinux x86-64 。
+此部分需要读者具有一定的 [Linux 命令行基础](../use-git/hug-cli)，请在任意形式的 GNU/Linux 或 macOS 下操作，教程的环境为 ArchLinux x86-64 。
 
 {{< cards >}}
     {{< card link="background" title="0. 背景" >}}

@@ -4,8 +4,6 @@ type: docs
 weight: 1
 ---
 
-## 背景
-
 一天早上你一如既往地起床，启动了你昨晚熬夜安装完的 Ubuntu 24.04，你生疏地开始了命令行操作：
 
 ```bash {filename="Terminal"}

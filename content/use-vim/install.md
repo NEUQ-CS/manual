@@ -50,9 +50,11 @@ make install
 
 ## Windows
 
-不满足教程的环境要求，你有以下选择：
+有几种方案：
 
-- 使用 WSL 或 VMware 等虚拟机的方式创造 GNU/Linux 环境。
+- 通过 [Cygwin](https://www.cygwin.com) 或 [MSYS2](https://www.msys2.org) 安装 Vim 。 
+
+- 使用 [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) 或 [VMware](https://www.vmware.com) 等虚拟机的方式创造 GNU/Linux 环境。
 
 - 使用 NeoVim for Windows 代替（NeoVim 兼容 Vim），具体参考[NeoVim Docs](https://github.com/neovim/neovim/blob/master/INSTALL.md#windows)。
 

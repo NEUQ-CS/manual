@@ -30,15 +30,23 @@ vim <file_name>
 
 ## Vim 的模式
 
+Vim 当前的模式可以在左下角看到，其中命令模式不会显示。
+
 - 命令模式：初始模式，可以使用命令。
 
 ![vim-kbd](./assets/vim-kbd.webp)
 
 - 输入模式：按下 <kbd>i</kbd> / <kbd>a</kbd> / <kbd>o</kbd> 键进入，进行文本编辑。
 
+![inset-mode](./assets/insert-mode.webp)
+
 - 底线命令模式：按下 <kbd>:</kbd> 进入 Vim 内部命令行。
 
+![commandline-mode](./assets/commandline-mode.webp)
+
 - 可视模式： 按下 <kbd>v</kbd> 或 <kbd>V</kbd> 键进入，用于对文本块的复制/剪切等操作。
+
+![visual-mode](./assets/visual-mode.webp)
 
 {{< callout type="info" >}}
 一下子看到 Vim 这么多键位，是不是有点被吓到？  
