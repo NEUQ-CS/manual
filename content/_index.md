@@ -8,8 +8,6 @@ next: get-started/
 ### 作者栏 （*排名不分先后*）
 **Cai1Hsu**
 
-**Thunder北雁横渚**
-
 **warzone**
 
 **怀椒**
