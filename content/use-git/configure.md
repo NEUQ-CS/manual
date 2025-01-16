@@ -94,7 +94,7 @@ ssh-keygen -t <算法> -C "<邮箱>"
 
 例子:
 
-1. RAS 算法
+1. RSA 算法
 ```bash
  ssh-keygen -t rsa -b 4096 -C "cai1hsu@outlook.com"
 ```
