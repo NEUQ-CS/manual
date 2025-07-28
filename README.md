@@ -1,9 +1,12 @@
 # NEUQ Computer Science Survival Manual
 
+[![CI](https://github.com/NEUQ-CS/manual/actions/workflows/ci.yml/badge.svg)](https://github.com/NEUQ-CS/manual/actions/workflows/ci.yml)
+[![Dependabot Updates](https://github.com/NEUQ-CS/manual/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/NEUQ-CS/manual/actions/workflows/dependabot/dependabot-updates)
+[![CodeQL](https://github.com/NEUQ-CS/manual/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/NEUQ-CS/manual/actions/workflows/github-code-scanning/codeql)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Hugo](https://img.shields.io/badge/Hugo-v0.148-orange)](https://gohugo.io/)
 
-🌐 **Live Site**: [null](null)
+🌐 **Live Site**: [neuq-manual.vercel.app](https://neuq-manual.vercel.app/)
 
 ## Local Development
 
@@ -14,8 +17,8 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Yttehs-HDX/neuq-manual.git
-   cd neuq-manual
+   git clone https://github.com/NEUQ-CS/manual.git
+   cd manual
    ```
 
 2. **Install dependencies**
