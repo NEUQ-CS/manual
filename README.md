@@ -7,13 +7,12 @@
 
 ## Local Development
 
-1. **Clone the repository**
-
 ### Prerequisites
 
 - [Hugo](https://gohugo.io/installation/) (Extended version)
 - [Go](https://golang.org/dl/) 1.21+
 
+1. **Clone the repository**
    ```bash
    git clone https://github.com/Yttehs-HDX/neuq-manual.git
    cd neuq-manual
