@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Hugo](https://img.shields.io/badge/Hugo-v0.148-orange)](https://gohugo.io/)
 
-🌐 **Live Site**: [neuq-manual.vercel.app](https://neuq-manual.vercel.app/)
+🌐 **Live Site**: [https://manual.shettydev.com/](https://manual.shettydev.com/)
 
 ## Local Development
 

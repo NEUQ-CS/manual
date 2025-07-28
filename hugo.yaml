@@ -1,6 +1,6 @@
 # Hugo configuration file
 title: 东秦计科人生存手册
-baseURL: "https://neuq-manual.vercel.app/"
+baseURL: "https://manual.shettydev.com/"
 
 enableGitInfo: true
 enableEmoji: true
