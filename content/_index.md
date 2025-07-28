@@ -6,6 +6,7 @@ next: get-started/
 ---
 
 ### 作者栏 （*排名不分先后*）
+
 **Cai1Hsu**
 
 **warzone**
@@ -14,6 +15,7 @@ next: get-started/
 
 **银色子弹**
 
+**Shetty Yttehs**
 
 ## 前言
 
