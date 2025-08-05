@@ -13,4 +13,5 @@ next: get-started/markdown_syntax
     {{< card link="about-ei" title="电子信息类篇" icon="adjustments" >}}
     {{< card link="algorithm" title="算法入门" icon="academic-cap" >}}
     {{< card link="电子信息类-保研" title="电子信息类-保研" >}}
+    {{< card link="information-gap" title="计算机科学信息差" >}}
 {{< /cards >}}
